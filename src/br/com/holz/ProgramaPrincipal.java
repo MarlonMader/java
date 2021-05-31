@@ -1,7 +1,13 @@
 package br.com.holz;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 public class ProgramaPrincipal {
 	public static void main(String[] args) {
+		
+		List<Pessoa> pessoas = new ArrayList<Pessoa>();
 		
 		Pessoa pessoa1 = new Pessoa();
 		Pessoa pessoa2 = new Pessoa();
@@ -24,27 +30,55 @@ public class ProgramaPrincipal {
 		pessoa4.setAnoDeNascimento(2004);
 		pessoa4.setSexo("M");
 		
-		System.out.println("---- Pessoa 1 ----");
-		System.out.println(pessoa1.getNome());
-		System.out.println(pessoa1.getAnoDeNascimento());
-		System.out.println(pessoa1.getSexo());
+		pessoas.add(pessoa1);
+		pessoas.add(pessoa2);
+		pessoas.add(pessoa3);
+		pessoas.add(pessoa4);
+		
+		System.out.println("----- PESSOAS COM FOR -----");
+		for(int i = 0; i < pessoas.size(); i++) {
+			System.out.println(pessoas.get(i));
+			System.out.println("¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨");
+		}
+		
 		System.out.println("\n");
 		
-		System.out.println("---- Pessoa 2 ----");
-		System.out.println(pessoa2.getNome());
-		System.out.println(pessoa2.getAnoDeNascimento());
-		System.out.println(pessoa2.getSexo());
+		System.out.println("----- PESSOAS CADASTRADAS -----");
+		for(Pessoa people : pessoas) {
+			System.out.println(people);
+			System.out.println("##################");
+		}
+		
 		System.out.println("\n");
 		
-		System.out.println("---- Pessoa 3 ----");
-		System.out.println(pessoa3.getNome());
-		System.out.println(pessoa3.getAnoDeNascimento());
-		System.out.println(pessoa3.getSexo());
+		System.out.println("---- PESSOAS COM FOREACH ----");
+		pessoas.forEach(aluno -> {
+			System.out.println(aluno);
+			System.out.println("******************");
+		});
+		
 		System.out.println("\n");
 		
-		System.out.println("---- Pessoa 4 ----");
-		System.out.println(pessoa4.getNome());
-		System.out.println(pessoa4.getAnoDeNascimento());
-		System.out.println(pessoa4.getSexo());
+		Scanner tec = new Scanner (System.in);
+		
+		MetodoController metodoController = new MetodoController();
+		
+		System.out.println("---- TABUADA ----");
+		metodoController.multiplicar();
+		
+		System.out.println("\n");
+		
+		System.out.println("----- SOMA DE DOIS VALORES -----");
+		System.out.println("A soma dos valores é: " + metodoController.somar());
+		
+		System.out.println("\n");
+		
+		System.out.println("----- SUBTRAÇÃO DE VALORES POR PARÂMETRO -----");
+		System.out.print("Informe o primeiro valor: ");
+		int valor1 = tec.nextInt();
+		System.out.print("Informe o segundo valor: ");
+		int valor2 = tec.nextInt();
+		
+		System.out.println("A subtração dos valores é: " + metodoController.subtrair(valor1, valor2));
 	}
 }
