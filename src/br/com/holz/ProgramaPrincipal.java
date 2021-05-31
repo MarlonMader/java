@@ -80,5 +80,7 @@ public class ProgramaPrincipal {
 		int valor2 = tec.nextInt();
 		
 		System.out.println("A subtração dos valores é: " + metodoController.subtrair(valor1, valor2));
+		
+		tec.close();
 	}
 }
