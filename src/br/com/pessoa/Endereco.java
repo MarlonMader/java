@@ -1,29 +1,42 @@
 package br.com.pessoa;
 
-public class Endereco {
+public class Endereco extends Cidade {
 
 	//ATRIBUTOS
-	private String cidade;
-	private String estado;
-	private String pais;
+	private String nomeDaRua;
+	private String bairro;
+	private String complemento;
+	private String numero;
 	
-	//MÉTODOS
-	public String getCidade() {
-		return cidade;
+	public String getNomeDaRua() {
+		return nomeDaRua;
 	}
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
+	
+	public void setNomeDaRua(String nomeDaRua) {
+		this.nomeDaRua = nomeDaRua;
 	}
-	public String getEstado() {
-		return estado;
+	
+	public String getBairro() {
+		return bairro;
 	}
-	public void setEstado(String estado) {
-		this.estado = estado;
+	
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
 	}
-	public String getPais() {
-		return pais;
+	
+	public String getComplemento() {
+		return complemento;
 	}
-	public void setPais(String pais) {
-		this.pais = pais;
+	
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+	
+	public String getNumero() {
+		return numero;
+	}
+	
+	public void setNumero(String numero) {
+		this.numero = numero;
 	}	
 }

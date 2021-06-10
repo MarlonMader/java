@@ -26,7 +26,8 @@ public class ProgramaPrincipal {
 				break;
 				
 			case 2:
-				if(pessoaController.listarPessoas(pessoas).isEmpty()) {
+				if(pessoas.isEmpty()) {
+					System.out.println("\n");
 					System.out.println("A lista está vazia, cadastre alguma pessoa!");
 					System.out.println("\n");
 				}
@@ -34,6 +35,7 @@ public class ProgramaPrincipal {
 					pessoaController.listarPessoas(pessoas);
 				}
 				break;
+				
 			case 9:
 				sair = true;
 				break;
