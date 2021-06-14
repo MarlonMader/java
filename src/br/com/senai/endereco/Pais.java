@@ -1,4 +1,4 @@
-package br.com.pessoa;
+package br.com.senai.endereco;
 
 public class Pais {
 
