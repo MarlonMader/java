@@ -1,4 +1,4 @@
-package br.com.pessoa;
+package br.com.senai.pessoa;
 
 import java.util.List;
 import java.util.Scanner;
