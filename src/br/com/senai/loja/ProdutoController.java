@@ -19,7 +19,6 @@ public class ProdutoController {
 	}
 
 	public void menu() {
-		System.out.println("|-------------- MENU ---------------|");
 		System.out.println("|3 -> Cadastrar Produtos            |");
 		System.out.println("|4 -> Lista de Produtos Cadastrados |");
 		System.out.println("|9 -> Sair do Sistema               |");
@@ -34,7 +33,6 @@ public class ProdutoController {
 		System.out.println("\n");
 
 		System.out.print("Informe o nome do produto: ");
-		tec.nextLine();
 		produto.setNomeDoProduto(tec.nextLine());
 
 		System.out.print("Informe o valor unitário do produto: ");
@@ -43,9 +41,6 @@ public class ProdutoController {
 		System.out.print("Informe a quantidade do produto: ");
 		tec.nextLine();
 		produto.setQuantidadeDoProduto(tec.nextInt());
-
-		System.out.print("O valor total da venda é: ");
-		produto.setValorTotalDoProduto(tec.nextDouble());
 
 		return produto;
 	}

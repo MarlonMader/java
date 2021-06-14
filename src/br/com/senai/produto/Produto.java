@@ -51,7 +51,7 @@ public class Produto {
 	}
 
 	public void setValorTotalDoProduto(double valorTotalDoProduto) {
-		this.valorTotalDoProduto = valorTotalDoProduto;
+		this.valorTotalDoProduto = getValorUnitarioDoProduto() * getQuantidadeDoProduto();
 	}
 
 }

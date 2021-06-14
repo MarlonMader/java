@@ -27,9 +27,9 @@ public class ProgramaPrincipal {
 			produtoController.menu();
 
 			int opcao = pessoaController.leOpcao();
-			int opcao2 = produtoController.leOpcao();
+//			int opcao2 = produtoController.leOpcao();
 
-			switch (opcao2) {
+			switch (opcao) {
 			
 			case 1:
 				System.out.println("\n");

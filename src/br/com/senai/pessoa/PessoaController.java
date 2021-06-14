@@ -17,12 +17,9 @@ public class PessoaController {
 	} 
 	
 	public void menu() {
-		System.out.println("|-------------- MENU --------------|");
-		System.out.println("|1 -> Cadastrar Pessoas            |");
-		System.out.println("|2 -> Lista de Pessoas Cadastradas |");
-		System.out.println("|9 -> Sair do Sistema              |");
-		System.out.println("|----------------------------------|");
-		System.out.println("\n");
+		System.out.println("|-------------- MENU ---------------|");
+		System.out.println("|1 -> Cadastrar Pessoas             |");
+		System.out.println("|2 -> Lista de Pessoas Cadastradas  |");
 	}
 	
 	public Pessoa cadastrarPessoa() {
