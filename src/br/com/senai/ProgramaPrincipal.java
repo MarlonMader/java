@@ -51,6 +51,8 @@ public class ProgramaPrincipal {
 			case 3:
 				System.out.println("\n");
 				produtos.add(produtoController.cadastrarProduto());
+				
+				break;
 
 			case 4:
 				if (produtos.isEmpty()) {

@@ -39,8 +39,11 @@ public class ProdutoController {
 		produto.setValorUnitarioDoProduto(tec.nextDouble());
 
 		System.out.print("Informe a quantidade do produto: ");
-		tec.nextLine();
 		produto.setQuantidadeDoProduto(tec.nextInt());
+		
+		produto.setValorTotalDoProduto(produto.getValorUnitarioDoProduto()*produto.getQuantidadeDoProduto());
+		
+		System.out.println("\n");
 
 		return produto;
 	}
