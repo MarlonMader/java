@@ -64,6 +64,10 @@ public class ProgramaPrincipal {
 				}
 
 				break;
+			
+			case 5:
+				produtoController.editarProduto(produtos);
+				break;
 				
 			case 9:
 				sair = true;
