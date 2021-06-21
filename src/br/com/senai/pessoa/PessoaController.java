@@ -3,6 +3,9 @@ package br.com.senai.pessoa;
 import java.util.List;
 import java.util.Scanner;
 
+import com.sun.javafx.collections.SetAdapterChange;
+import com.sun.xml.internal.ws.api.model.wsdl.WSDLBoundOperation.ANONYMOUS;
+
 public class PessoaController {
 
 	private Scanner tec;
@@ -20,6 +23,8 @@ public class PessoaController {
 		System.out.println("|-------------- MENU ---------------|");
 		System.out.println("|1 -> Cadastrar Pessoas             |");
 		System.out.println("|2 -> Lista de Pessoas Cadastradas  |");
+		System.out.println("|3 -> Editar Pessoa                 |");
+		System.out.println("|4 -> Excluir Pessoa                |");
 	}
 	
 	public Pessoa cadastrarPessoa() {
@@ -75,11 +80,12 @@ public class PessoaController {
 		System.out.println("----------------- PESSOAS CADASTRADADS ---------------");
 		System.out.println("\n");
 		
-		System.out.printf("| %20s | %4s | %5s | %4s | %10s | %10s | %15s| %2s | %15s | %17s | %20s| %10s| %5s| \n" ,
+		System.out.printf("| %2s | %15s | %20s | %20s | %20s | %20s| %21s | %23s | %20s | %30s | %30s | %30s | %21s | %30s | \n" , "Id" ,
 				"Nome" , "Ano" , "Idade" , "Altura", "País" , "Sigla Páis", "Estado" , "UF" , "Cidade" , "Rua" , "Bairro" , "Complemento" , "Número");
 		
 		for(int i = 0; i < pessoas.size(); i++) {
-			System.out.printf("| %20s | %4d | %5d | %6.2f | %10s | %10s | %10s | %2s | %13s | %10s | %10s | %10s | %5s| \n" , 
+			System.out.printf("| %2d | %15s | %20s | %20s | %20s | %20s| %21s | %23s | %20s | %30s | %30s | %30s | %21s | %30s | \n" , 
+					i + 1,
 					pessoas.get(i).getNome(),
 					pessoas.get(i).getAnoDeNascimento(),
 					pessoas.get(i).getIdade(),
@@ -97,5 +103,97 @@ public class PessoaController {
 		System.out.println("\n");
 
 		return pessoas;
+	}
+	
+	public List<Pessoa> editarPessoas(List<Pessoa> pessoas) {
+		
+		Pessoa pessoa = new Pessoa();
+		
+		listarPessoas(pessoas);
+		
+		System.out.println("Informe o ID da pessoa para editar -> ");
+		int idPessoa = tec.nextInt() - 1;
+		System.out.println("\n");
+		
+		System.out.println("|--- CAMPOS A SEREM EDITADOS ---|");
+		System.out.println("|1 -> Nome da pessoa            |");
+		System.out.println("|2 -> Ano de Nascimento         |");
+		System.out.println("|3 -> Altura                    |");
+		System.out.println("\n");
+		System.out.println("Informe o campo que deseja editar -> ");
+		int opcao = tec.nextInt();
+		System.out.println("\n");
+		
+		switch (opcao) {
+		
+		case 1:
+			System.out.println("---- Editar o nome da pessoa cadastrada ----");
+			System.out.println("\n");
+			System.out.println("Informe o novo nome da pessoa ");
+			pessoa.setNome(tec.next());
+			
+			pessoa.setAnoDeNascimento(pessoas.get(idPessoa).getAnoDeNascimento());
+			pessoa.setAltura(pessoas.get(idPessoa).getAltura());
+			
+			pessoas.set(idPessoa, pessoa);
+			System.out.println("\n");
+			break;
+			
+		case 2:
+			System.out.println("---- Editar o Ano de nascimetno da pessoa ----");
+			System.out.println("\n");
+			System.out.println("Informe o Ano de nascimento da pessoa: ");
+			pessoa.setAnoDeNascimento(tec.nextInt());
+			
+			pessoa.setNome(pessoas.get(idPessoa).getNome());
+			pessoa.setAltura(pessoas.get(idPessoa).getAltura());
+			
+			
+			pessoas.set(idPessoa, pessoa);
+			
+			System.out.println("\n");
+			break;
+			
+		case 3:
+			System.out.println("---- Editar a altura da pessoa ----");
+			System.out.println("\n");
+			System.out.println("Informe a altura da pessoa: ");
+			pessoa.setAltura(tec.nextDouble());
+			
+			pessoa.setNome(pessoas.get(idPessoa).getNome());
+			pessoa.setAnoDeNascimento(pessoas.get(idPessoa).getAnoDeNascimento());
+			
+			pessoas.set(idPessoa, pessoa);
+			
+			System.out.println("\n");
+			break;
+			
+			default:
+				System.out.println("Opcao invalida!!!!");
+				break;
+		}
+		
+		return pessoas;
+	}
+	
+	public void excluirPessoa(List<Pessoa> pessoas) {
+		listarPessoas(pessoas);
+		
+		if(pessoas.isEmpty()) {
+			return;
+		}
+		
+		System.out.println("--- EXCLUIR PESSOA ---");
+		
+		System.out.println("Informe o Id da pessoa para excluir: ");
+		int idPessoa = tec.nextInt() - 1;
+		
+		if(pessoas.size() <= idPessoa) {
+			System.out.println("Produto não cadastrado.");
+			return;
+		}
+	 
+		pessoas.remove(idPessoa);
+		
 	}
 }

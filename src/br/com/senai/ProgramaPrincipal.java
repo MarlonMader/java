@@ -3,18 +3,25 @@ package br.com.senai;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.senai.loja.ProdutoController;
 import br.com.senai.loja.VendaController;
 import br.com.senai.pessoa.Pessoa;
 import br.com.senai.pessoa.PessoaController;
 import br.com.senai.produto.Produto;
+import br.com.senai.produto.ProdutoController;
 
 public class ProgramaPrincipal {
 
 	public static void main(String[] args) {
-
 		List<Pessoa> pessoas = new ArrayList<>();
 		List<Produto> produtos = new ArrayList<>();
+		
+		Produto produto = new Produto(
+				"Abacate" , 
+				2.5,
+				35,
+				2.5 * 35
+				);
+		produtos.add(produto);
 
 		PessoaController pessoaController = new PessoaController();
 		ProdutoController produtoController = new ProdutoController();
@@ -49,12 +56,26 @@ public class ProgramaPrincipal {
 				break;
 				
 			case 3:
+				if (pessoas.isEmpty()) {
+					System.out.println("\n");
+					System.out.println("A lista está vazia, cadastre algum produto!");
+					System.out.println("\n");
+				} else {
+				pessoaController.editarPessoas(pessoas);
+				}
+				break;
+				
+			case 4:
+				pessoaController.excluirPessoa(pessoas);
+				break;
+				
+			case 5:
 				System.out.println("\n");
 				produtos.add(produtoController.cadastrarProduto());
 				
 				break;
 
-			case 4:
+			case 6:
 				if (produtos.isEmpty()) {
 					System.out.println("\n");
 					System.out.println("A lista está vazia, cadastre algum produto!");
@@ -65,8 +86,18 @@ public class ProgramaPrincipal {
 
 				break;
 			
-			case 5:
+			case 7:
+				if (produtos.isEmpty()) {
+					System.out.println("\n");
+					System.out.println("A lista está vazia, cadastre algum produto!");
+					System.out.println("\n");
+				} else {
 				produtoController.editarProduto(produtos);
+				}
+				break;
+				
+			case 8:
+				produtoController.excluirProduto(produtos);
 				break;
 				
 			case 9:
