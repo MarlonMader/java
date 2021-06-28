@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 import com.sun.xml.internal.ws.api.pipe.NextAction;
 
+import br.com.senai.pessoa.Pessoa;
+
 public class ProdutoController {
 
 	private Scanner tec;
@@ -18,21 +20,48 @@ public class ProdutoController {
 		return tec.nextInt();
 	}
 
-	public void menu() {
-		System.out.println("|5 -> Cadastrar Produtos            |");
-		System.out.println("|6 -> Lista de Produtos Cadastrados |");
-		System.out.println("|7 -> Editar produto                |");
-		System.out.println("|8 -> Excluir produto               |");
-		System.out.println("|9 -> Sair do Sistema               |");
+	public void menu(List<Produto>produtos) {
+		System.out.print("\n");
+		System.out.println("|-------------- MENU ---------------|");
+		System.out.println("|1 -> Cadastrar Produtos            |");
+		System.out.println("|2 -> Lista de Produtos Cadastrados |");
+		System.out.println("|3 -> Editar produto                |");
+		System.out.println("|4 -> Excluir produto               |");
 		System.out.println("|-----------------------------------|");
-		System.out.println("\n");
+		System.out.print("\n");
+		System.out.print("Informe a Opção desejada: ");
+		
+		int opcao = tec.nextInt();
+		switch(opcao) {
+		
+		case 1:
+			produtos.add(cadastrarProduto());
+			break;
+		
+		case 2:
+			listarProdutos(produtos);
+			break;
+		
+		case 3:
+			editarProduto(produtos);
+			break;
+			
+		case 4:
+			excluirProduto(produtos);
+			break;
+		
+		default:
+			break;
+		
+		
+		}
 	}
 
 	public Produto cadastrarProduto() {
 		Produto produto = new Produto();
 
 		System.out.println("---- Cadastrar Produtos ----");
-		System.out.println("\n");
+		System.out.print("\n");
 
 		System.out.print("Informe o nome do produto: ");
 		produto.setNomeDoProduto(tec.next());
@@ -51,9 +80,17 @@ public class ProdutoController {
 	}
 
 	public List<Produto> listarProdutos(List<Produto> produtos){
-		System.out.println("\n");
+		
+		if (produtos.isEmpty()) {
+			System.out.println("\n");
+			System.out.println("Não tem produtos cadastrados");
+			System.out.println("\n");
+			return null;
+		}
+		
+		System.out.print("\n");
 		System.out.println("----------------- PRODUTOS CADASTRADOS ---------------");
-		System.out.println("\n");
+		System.out.print("\n");
 		
 		System.out.printf("| %2s | %10s | %10s | %13s | %9s | \n" ,
 				"ID" , "Produto" , "Valor Uni." , "Quantidade" , "Total");
@@ -74,28 +111,38 @@ public class ProdutoController {
 	public List<Produto> editarProduto(List<Produto> produtos) {
 		
 		Produto produto = new Produto();
-		
 		listarProdutos(produtos);
+		
+		
+		if(produtos.isEmpty()) {
+			System.out.println("\n");
+			System.out.println("Não tem pessoas cadastrados");
+			System.out.println("\n");
+			return null;
+		}
+		
+		
 		
 		System.out.print("Informe o ID do produto para editar -> ");
 		int idProduto = tec.nextInt() - 1;
-		System.out.println("\n");
 		
-		System.out.println("|--- CAMPOS A SEREM EDITADOS ---|");
+		System.out.print("\n");
+		System.out.println("|--- Campos a serem editados ---|");
 		System.out.println("|1 -> Nome do produto           |");
 		System.out.println("|2 -> Valor unitário do produto |");
 		System.out.println("|3 -> Quantidade de produtos    |");
 		System.out.println("|-------------------------------|");
-		System.out.println("\n");
+		System.out.print("\n");
 		System.out.print("Informe o campo que deseja editar -> ");
+		
 		int opcao = tec.nextInt();
-		System.out.println("\n");
+		System.out.print("\n");
 		
 		switch (opcao) {
 		
 		case 1:
-			System.out.println("---- Editar o nome do produto cadastrado ----");
-			System.out.println("\n");
+			System.out.println("---- EDITAR O NOME DO PRODUTO CADASTRADO ----");
+			System.out.print("\n");
 			System.out.print("Informe novamente  o novo do produto -> ");
 			produto.setNomeDoProduto(tec.next());
 			
@@ -105,12 +152,12 @@ public class ProdutoController {
 			
 			produtos.set(idProduto, produto);
 			
-			System.out.println("\n");
+			System.out.print("\n");
 			break;
 			
 		case 2:
-			System.out.println("---- Editar o valor unitário do produto cadastrado ----");
-			System.out.println("\n");
+			System.out.println("----EDITAR O VALOR UNITÁRIO DO PRODUTO CADASTRADO ----");
+			System.out.print("\n");
 			System.out.print("Informe novamente o valor unitário do produto -> R$ ");
 			produto.setValorUnitarioDoProduto(tec.nextDouble());
 			
@@ -124,8 +171,8 @@ public class ProdutoController {
 			break;
 			
 		case 3:
-			System.out.println("---- Editar a quantidade de produtos cadastrados ----");
-			System.out.println("\n");
+			System.out.println("---- EDITAR A QUANTIDADE DE PRODUTOS CADASTRADOS ----");
+			System.out.print("\n");
 			System.out.print("Informe novamente a quantidade do produto -> ");
 			produto.setQuantidadeDoProduto(tec.nextInt());
 			
@@ -147,6 +194,7 @@ public class ProdutoController {
 	}
 	
 	public void excluirProduto(List<Produto> produtos) {
+		
 		listarProdutos(produtos);
 		
 		if(produtos.isEmpty()) {
@@ -159,38 +207,13 @@ public class ProdutoController {
 		int idProduto = tec.nextInt() - 1;
 		
 		if(produtos.size() <= idProduto) {
-			System.out.println("Produto não cadastrado.");
+			System.out.println("Produto não cadastrado");
 			return;
 		}
 		
 		produtos.remove(idProduto);
 		
+		
 	}
+	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

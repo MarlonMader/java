@@ -2,7 +2,9 @@ package br.com.senai;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
+import br.com.senai.loja.Venda;
 import br.com.senai.loja.VendaController;
 import br.com.senai.pessoa.Pessoa;
 import br.com.senai.pessoa.PessoaController;
@@ -12,95 +14,50 @@ import br.com.senai.produto.ProdutoController;
 public class ProgramaPrincipal {
 
 	public static void main(String[] args) {
-		List<Pessoa> pessoas = new ArrayList<>();
-		List<Produto> produtos = new ArrayList<>();
-		
-		Produto produto = new Produto(
-				"Abacate" , 
-				2.5,
-				35,
-				2.5 * 35
-				);
-		produtos.add(produto);
 
+		Scanner tec = new Scanner(System.in);
+		List<Pessoa> pessoas = new ArrayList<>();
+		List<Produto> produtos = new ArrayList<Produto>();
+		List<Venda> vendas = new ArrayList<Venda>();
+
+		Produto produto = new Produto ("Abacate",2.5,35,2.5*35);
+		
+		produtos.add(produto);
+				
+		
 		PessoaController pessoaController = new PessoaController();
 		ProdutoController produtoController = new ProdutoController();
+		VendaController vendaController = new VendaController();
 
 		boolean sair = false;
 
 		do {
-
-			pessoaController.menu();
-			produtoController.menu();
-
-			int opcao = pessoaController.leOpcao();
-//			int opcao2 = produtoController.leOpcao();
-
+			
+				System.out.print("\n");
+				System.out.println("|-------------- MENU PRINCIPAL ---------------|");
+				System.out.println("|1 -> Menu Pessoas                            |");
+				System.out.println("|2 -> Menu Produtos                           |");
+				System.out.println("|3 -> Menu Vendas                             |");
+				System.out.println("|0 -> Sair                                    |");
+				System.out.print("|---------------------------------------------|");
+				System.out.println("\n");
+				System.out.print("Informe a opção desejada: ");	
+				
+				
+				int opcao= tec.nextInt();
 			switch (opcao) {
 			
 			case 1:
-				System.out.println("\n");
-				pessoas.add(pessoaController.cadastrarPessoa());
-				
+				pessoaController.menu(pessoas);
 				break;
-
+				
 			case 2:
-				if (pessoas.isEmpty()) {
-					System.out.println("\n");
-					System.out.println("A lista está vazia, cadastre alguma pessoa!");
-					System.out.println("\n");
-				} else {
-					pessoaController.listarPessoas(pessoas);
-				}
-				
+				produtoController.menu(produtos);
 				break;
-				
 			case 3:
-				if (pessoas.isEmpty()) {
-					System.out.println("\n");
-					System.out.println("A lista está vazia, cadastre algum produto!");
-					System.out.println("\n");
-				} else {
-				pessoaController.editarPessoas(pessoas);
-				}
+				vendaController.menu(produtos, pessoas);
 				break;
-				
-			case 4:
-				pessoaController.excluirPessoa(pessoas);
-				break;
-				
-			case 5:
-				System.out.println("\n");
-				produtos.add(produtoController.cadastrarProduto());
-				
-				break;
-
-			case 6:
-				if (produtos.isEmpty()) {
-					System.out.println("\n");
-					System.out.println("A lista está vazia, cadastre algum produto!");
-					System.out.println("\n");
-				} else {
-					produtoController.listarProdutos(produtos);
-				}
-
-				break;
-			
-			case 7:
-				if (produtos.isEmpty()) {
-					System.out.println("\n");
-					System.out.println("A lista está vazia, cadastre algum produto!");
-					System.out.println("\n");
-				} else {
-				produtoController.editarProduto(produtos);
-				}
-				break;
-				
-			case 8:
-				produtoController.excluirProduto(produtos);
-				break;
-				
-			case 9:
+			case 0:
 				sair = true;
 				
 				break;
